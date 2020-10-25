@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+
+prefix="package_traefik_$2"
+
+
+executionplane --silent docker container prune --force
+

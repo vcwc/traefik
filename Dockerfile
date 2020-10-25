@@ -9,5 +9,7 @@ LABEL co.vcweb.schema-version="1.0" \
       co.vcweb.description="Traefik based image library for core vcwebco implementation." \
       co.vcweb.realm="vcwc" \
       co.vcweb.library="traefik" \
+      co.vcweb.image="traefik" \
+      co.vcweb.flavor="traefik" \
       co.vcweb.tag="${VCW_TAG}" \
       co.vcweb.maintainer="vcw@vcweb.co"

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+
+
+  ######################################################
+  # THIS FILE IS AUTO-GENERATED - PLEASE DO NOT CHANGE #
+  ######################################################
+
+#!/usr/bin/env bash
+
+
+	executionplane --silent docker volume create traefik_local_metrics_monitor_heartbeat_data_volume
+	
+	executionplane --silent docker volume create traefik_local_metrics_monitor_heartbeat_monitors_volume
+	
+executionplane --silent docker run -v traefik_local_metrics_monitor_heartbeat_monitors_volume:/usr/share/heartbeat/monitors.d ${CONTECO_REGISTRY}$1 cp -r /soleco//_component/_volumes/metrics_monitor_heartbeat_monitors_volume/* /usr/share/heartbeat/monitors.d
+		

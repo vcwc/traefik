@@ -1,0 +1,36 @@
+#!/usr/bin/env bash
+
+
+prefix="module_traefik_g1_$2"
+
+
+executionplane --silent docker container prune --force
+
+if [[ "module_traefik_g1_metrics_monitor_heartbeat_data_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_traefik_g1_metrics_monitor_heartbeat_data_volume"
+			result=$(docker volume ls | grep "module_traefik_g1_metrics_monitor_heartbeat_data_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
+if [[ "module_traefik_g1_metrics_monitor_heartbeat_monitors_volume" == "$prefix"* ]] ; then
+		continue="true"
+		while [[ "true" == "$continue" ]] ;
+		do
+			executionplane docker volume rm "module_traefik_g1_metrics_monitor_heartbeat_monitors_volume"
+			result=$(docker volume ls | grep "module_traefik_g1_metrics_monitor_heartbeat_monitors_volume")
+			if [[ "$result" == "" ]] ; then
+				continue="false"
+			else
+				sleep 3;
+			fi
+		done;
+	fi
+	
