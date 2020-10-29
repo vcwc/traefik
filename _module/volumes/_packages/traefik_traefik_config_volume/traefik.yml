@@ -1,0 +1,19 @@
+## traefik.yml
+entrypoints:
+  conteco:
+    address: ":80"
+  traefik:
+    address: ":8080"
+
+# Docker configuration backend
+providers:
+  docker:
+    defaultRule: "Host(`{{ trimPrefix `/` .Name }}.docker.localhost`)"
+    watch: true
+    swarmMode: true
+    exposedByDefault: false
+    network: ${CONTECO_ECOSYSTEM}_overlay
+
+# API and dashboard configuration
+api:
+  insecure: true

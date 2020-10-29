@@ -1,5 +1,0 @@
-#!/usr/bin/env bash
-
-
-prefix="package_traefik_$2"
-

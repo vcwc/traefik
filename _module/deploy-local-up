@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+prefix="vcwc_traefik__$1"
+prefix="vcwc_traefik__$1"
+
+if [[ "vcwc_traefik__metrics_monitor_heartbeat_data_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcwc_traefik__metrics_monitor_heartbeat_data_volume
+fi
+
+if [[ "vcwc_traefik__metrics_monitor_heartbeat_monitors_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcwc_traefik__metrics_monitor_heartbeat_monitors_volume
+fi
+
+if [[ "vcwc_traefik__traefik_traefik_config_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker volume create vcwc_traefik__traefik_traefik_config_volume
+fi
+
+if [[ "vcwc_traefik__traefik_traefik_config_volume" == "$prefix"* ]] ; then
+	executionplane --silent docker run -v vcw_controlplane_repos:/vcw/pwd -v vcwc_traefik__traefik_traefik_config_volume:/etc/traefik ${VCW_REGISTRY}vcwc/controlplane.vcw console cmd cp -r /vcw/pwd/vcwc/traefik/_module/volumes/traefik_traefik_config_volume/. /etc/traefik
+fi

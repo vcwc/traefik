@@ -8,16 +8,16 @@ services:
     environment: []
     command: []
     volumes: ['/var/run/docker.sock:/var/run/docker.sock', '${VCW_STACK_STACKPREFIX}_traefik_config_volume:/etc/traefik']
-    ports: [${VCW_STACK_TRAEFIK_MODULE_TRAEFIK_GATEWAY_PORT}:80,${VCW_STACK_TRAEFIK_MODULE_TRAEFIK_DASHBOARD_PORT}:8080]
+    ports: [${TRAEFIK_MODULE_TRAEFIK_GATEWAY_PORT}:80,${TRAEFIK_MODULE_TRAEFIK_DASHBOARD_PORT}:8080]
     networks: [${VCW_STACK_NETWORKLOCAL}_overlay, ${VCW_STACK_NETWORKGLOBAL}_overlay]
     deploy:
       mode: replicated
       resources:
         limits:
-          memory: '${VCW_STACK_TRAEFIK_DEPLOY_RESOURCES_LIMITS_MEMORY}'
+          memory: '${TRAEFIK_DEPLOY_RESOURCES_LIMITS_MEMORY}'
         reservations:
-          memory: '${VCW_STACK_TRAEFIK_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
-${VCW_STACK_TRAEFIK_COMPOSE_EXTENSIONS}
+          memory: '${TRAEFIK_DEPLOY_RESOURCES_RESERVATIONS_MEMORY}'
+${TRAEFIK_COMPOSE_EXTENSIONS}
 # END SERVICE vcwc/traefik
 
 networks: {${VCW_STACK_NETWORKLOCAL}_overlay: { external: true },${VCW_STACK_NETWORKGLOBAL}_overlay: { external: true }}
