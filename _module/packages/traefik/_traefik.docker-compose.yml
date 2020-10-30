@@ -7,9 +7,9 @@ services:
     image: ${VCW_REGISTRY}traefik:v2.3.1
     environment: []
     command: []
-    volumes: ['/var/run/docker.sock:/var/run/docker.sock', '${VCW_STACK_STACKPREFIX}_traefik_config_volume:/etc/traefik']
+    volumes: ['/var/run/docker.sock:/var/run/docker.sock', '${VCW_STACK_GLOBAL_STACKPREFIX}_traefik_config_volume:/etc/traefik']
     ports: [${TRAEFIK_MODULE_TRAEFIK_GATEWAY_PORT}:80,${TRAEFIK_MODULE_TRAEFIK_DASHBOARD_PORT}:8080]
-    networks: [${VCW_STACK_NETWORKLOCAL}_overlay, ${VCW_STACK_NETWORKGLOBAL}_overlay]
+    networks: [${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay, ${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay]
     deploy:
       mode: replicated
       resources:
@@ -20,6 +20,6 @@ services:
 ${TRAEFIK_COMPOSE_EXTENSIONS}
 # END SERVICE vcwc/traefik
 
-networks: {${VCW_STACK_NETWORKLOCAL}_overlay: { external: true },${VCW_STACK_NETWORKGLOBAL}_overlay: { external: true }}
-volumes: {${VCW_STACK_STACKPREFIX}_traefik_config_volume: { external: true }}
+networks: {${VCW_STACK_GLOBAL_NETWORKLOCAL}_overlay: { external: true },${VCW_STACK_GLOBAL_NETWORKGLOBAL}_overlay: { external: true }}
+volumes: {${VCW_STACK_GLOBAL_STACKPREFIX}_traefik_config_volume: { external: true }}
 ${VCW_STACK_GLOBAL_COMPOSE_EXTENSIONS}
