@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+
+executionplane --silent docker volume create vcwc_traefik__metrics_monitor_heartbeat_config
+	
+executionplane --silent docker volume create vcwc_traefik__metrics_monitor_heartbeat_data_volume
+	
+executionplane --silent docker volume create vcwc_traefik__metrics_monitor_heartbeat_monitors_volume
+	
+executionplane --silent docker volume create vcwc_traefik__traefik_traefik_config_volume
+	
+
+executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcwc_traefik__metrics_monitor_heartbeat_config:/vcw/pwd ${VCW_REGISTRY}vcwc/controlplane.vcw console cmd cp -r /source/vcwc/traefik/_solution/_configuration/volumes/metrics_monitor_heartbeat_config/* /vcw/pwd
+
+
+executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcwc_traefik__metrics_monitor_heartbeat_monitors_volume:/usr/share/heartbeat/monitors.d ${VCW_REGISTRY}vcwc/controlplane.vcw console cmd cp -r /source/vcwc/traefik/_solution/_configuration/volumes/metrics_monitor_heartbeat_monitors_volume/* /usr/share/heartbeat/monitors.d
+
+
+executionplane --silent docker run -v vcw_controlplane_repos:/source -v vcwc_traefik__traefik_traefik_config_volume:/etc/traefik ${VCW_REGISTRY}vcwc/controlplane.vcw console cmd cp -r /source/vcwc/traefik/_solution/_configuration/volumes/traefik_traefik_config_volume/* /etc/traefik
+

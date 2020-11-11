@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
+selectedNode="${@: -1}"
 
-# implementation can be overridden as required by the solution
-# the default implementation executes on all components from the top component down
-deploy --recurse $@
+executionplane-info "EXECUTING CONTROLPLANE DEPLOY"
+
+.solution deploy . $selectedNode
+
+.solution run boot . $selectedNode
+
+.solution run start . $selectedNode
